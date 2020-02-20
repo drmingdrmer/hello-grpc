@@ -1,0 +1,12 @@
+[package]
+name = "hello"
+version = "0.1.0"
+authors = ["xp"]
+edition = "2018"
+
+
+# [dependencies]
+# protoc-rust = { version = "2.10.1" }
+
+[build-dependencies]
+protoc-rust = { version = "2.10.1" }
