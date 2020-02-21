@@ -4,11 +4,12 @@ use protoc_rust::Customize;
 
 fn main() {
     protoc_rust::run(protoc_rust::Args {
-        out_dir: "src",
-        input: &["helloworld/helloworld.proto"],
-        includes: &["helloworld"],
+        out_dir: "../src",
+        input: &["../helloworld/helloworld.proto"],
+        includes: &["../helloworld"],
         customize: Customize {
             ..Default::default()
         },
-    }).expect("protoc complete");
+    })
+    .expect("protoc complete");
 }

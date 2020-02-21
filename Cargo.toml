@@ -5,8 +5,6 @@ authors = ["xp"]
 edition = "2018"
 
 
-# [dependencies]
-# protoc-rust = { version = "2.10.1" }
-
-[build-dependencies]
-protoc-rust = { version = "2.10.1" }
+[dependencies]
+protobuf = { version = "=2.8.2" }
+grpc = "0.6.2"
