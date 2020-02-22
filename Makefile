@@ -4,13 +4,13 @@ install-deps:
 gen: gen-go gen-rust
 
 gen-go:
-	protoc --proto_path=helloworld --go_out=plugins=grpc:helloworld helloworld.proto
+	protoc --proto_path=proto --go_out=plugins=grpc:helloworld helloworld.proto
 
 gen-rust:
 	# Message
 	( cd pbbuild && cargo run; )
 	# grpc
-	protoc --proto_path=helloworld --rust-grpc_out=src helloworld.proto
+	protoc --proto_path=proto --rust-grpc_out=src helloworld.proto
 
 fmt:
 	find . -name "*.rs" -exec rustfmt --edition 2018 {} ';'

@@ -5,8 +5,8 @@ use protoc_rust::Customize;
 fn main() {
     protoc_rust::run(protoc_rust::Args {
         out_dir: "../src",
-        input: &["../helloworld/helloworld.proto"],
-        includes: &["../helloworld"],
+        input: &["../proto/helloworld.proto"],
+        includes: &["../proto"],
         customize: Customize {
             ..Default::default()
         },
