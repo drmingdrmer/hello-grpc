@@ -5,6 +5,15 @@ authors = ["xp"]
 edition = "2018"
 
 
+[[bin]] # Bin to run the HelloWorld gRPC server
+name = "server"
+path = "src/server.rs"
+
+[[bin]] # Bin to run the HelloWorld gRPC client
+name = "client"
+path = "src/client.rs"
+
 [dependencies]
-protobuf = { version = "=2.8.2" }
-grpc = "0.6.2"
+tonic = "0.1"
+prost = "0.6"
+tokio = { version = "0.2", features = ["macros"] }

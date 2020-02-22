@@ -1,15 +1,12 @@
-extern crate protoc_rust;
-
-use protoc_rust::Customize;
+extern crate tonic_build;
 
 fn main() {
-    protoc_rust::run(protoc_rust::Args {
-        out_dir: "../src",
-        input: &["../proto/helloworld.proto"],
-        includes: &["../proto"],
-        customize: Customize {
-            ..Default::default()
-        },
-    })
-    .expect("protoc complete");
+    tonic_build::compile_protos("../proto/helloworld.proto").unwrap();
+    // or:
+    // tonic_build::configure()
+    //     .build_server(false)
+    //     .compile(&["./proto/helloworld.proto"], &["./proto"])
+    //     .unwrap();
+    //
+    // https://github.com/hyperium/tonic/blob/master/tonic-build/README.md
 }

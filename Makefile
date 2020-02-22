@@ -1,16 +1,10 @@
-install-deps:
-	cargo install grpc-compiler
-
 gen: gen-go gen-rust
 
 gen-go:
 	protoc --proto_path=proto --go_out=plugins=grpc:helloworld helloworld.proto
 
 gen-rust:
-	# Message
-	( cd pbbuild && cargo run; )
-	# grpc
-	protoc --proto_path=proto --rust-grpc_out=src helloworld.proto
+	( cd pbbuild && OUT_DIR=../src cargo run; )
 
 fmt:
 	find . -name "*.rs" -exec rustfmt --edition 2018 {} ';'

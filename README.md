@@ -12,8 +12,9 @@ and a grpc client in `go`.
 
 - `/c` for go client.
 - `/s` for go server.
-- `/src` for rust server.
-- `/helloworld` for proto file and generated go-package `helloworld`.
+- `/src` for rust server and client.
+- `/proto` for proto file .
+- `/helloworld` for generated go-package `helloworld`.
 - `/pbbuild` is a standalone cargo to generate rust code from proto.
 
 # Generate codes
@@ -26,9 +27,31 @@ and a grpc client in `go`.
 ## Start server on port 3334: choose one of go or rust:
 
 - go: `cd s && go run server.go`
-- rust: `cargo run`
+- rust: `cargo run --bin server`
 
 > Ctrl-C to quit
+
+## Call it from CLI:
+
+```
+# brew install grpcurl
+
+grpcurl \
+    -plaintext                         \
+    -import-path   ./proto             \
+    -proto         helloworld.proto    \
+    -d             '{"name": "Tonic"}' \
+    localhost:3334                     \
+    helloworld.Greeter/SayHello
+
+# {
+#   "message": "Hello Tonic!"
+# }
+```
+
+## Call it with rust:
+
+`cargo run --bin client`
 
 ## Call it with go:
 
