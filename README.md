@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/drmingdrmer/hello-grpc) 
+
 # hello-grpc
 
 A minimized `grpc` experiment with `go` and `rust`
