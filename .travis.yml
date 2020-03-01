@@ -11,15 +11,13 @@ matrix:
           - cargo build --verbose --all
       - language: go
         go:
-            - 1.11.x
             - 1.12.x
-            - tip
         before_script:
           - cd grpc-go/
         script:
           - make gen
-          - cd c && go build client.go
-          - cd s && go build server.go
+          - go build c/client.go
+          - go build s/server.go
       - language: rust
         # cache: cargo
         rust:
