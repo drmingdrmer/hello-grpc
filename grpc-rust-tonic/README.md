@@ -33,3 +33,7 @@ grpcurl \
 ## Or start server and client in one process:
 
 `cargo run --bin oneshot`
+
+# Re-generate protobuf:
+
+`make gen`

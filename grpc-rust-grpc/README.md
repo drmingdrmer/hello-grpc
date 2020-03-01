@@ -29,6 +29,11 @@ grpcurl \
 # }
 ```
 
+# Re-generate protobuf:
+
+- `make install-deps` to install CLI command for generating rust code.
+- `make gen` to generate `rust` code with grpc support.
+
 # Notes
 
 Crate `protoc-rust` and `protobuf` are from a same git repo:

@@ -31,3 +31,7 @@ grpcurl \
 ## Call it with go:
 
 `cd c && go run client.go`
+
+# Re-generate protobuf:
+
+`make gen`

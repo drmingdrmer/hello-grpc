@@ -11,10 +11,10 @@ and a grpc client in `go`.
 # Directory layout
 
 - `/proto` for proto file .
-- `/pbbuild` is a standalone cargo to generate rust code from proto.
 
 - `grpc-go` grpc impl in go.
-- `grpc-rust-tonic` grpc impl in rust with tonic.
+- `grpc-rust-grpc` grpc impl in rust with crate `grpc` and `protobuf`.
+- `grpc-rust-tonic` grpc impl in rust with crate `tonic` and `prost`.
 
 # Re-Generate proto codes
 
