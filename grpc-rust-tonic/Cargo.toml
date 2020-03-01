@@ -1,9 +1,8 @@
 [package]
-name = "hello"
+name = "tonic-grpc"
 version = "0.1.0"
-authors = ["xp"]
+authors = ["drdr xp <drdr.xp@gmail.com>"]
 edition = "2018"
-
 
 [[bin]] # Bin to run the HelloWorld gRPC server
 name = "server"
@@ -12,6 +11,10 @@ path = "src/server.rs"
 [[bin]] # Bin to run the HelloWorld gRPC client
 name = "client"
 path = "src/client.rs"
+
+[[bin]]
+name = "oneshot"
+path = "src/oneshot.rs"
 
 [dependencies]
 tonic = "0.1"

@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	hd "github.com/drmingdrmer/hello-grpc/helloworld"
+	hd "github.com/drmingdrmer/hello-grpc/grpc-go/helloworld"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )

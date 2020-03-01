@@ -5,7 +5,7 @@ import (
 	fmt "fmt"
 	"net"
 
-	hd "github.com/drmingdrmer/hello-grpc/helloworld"
+	hd "github.com/drmingdrmer/hello-grpc/grpc-go/helloworld"
 	grpc "google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
