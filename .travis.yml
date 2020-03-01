@@ -1,0 +1,45 @@
+matrix:
+    include:
+      - language: rust
+        # cache: cargo
+        rust:
+          - stable
+        before_script:
+          - cd echoserver-rust-tokio
+        script:
+          - rustup component add rustfmt
+          - cargo build --verbose --all
+      - language: go
+        go:
+            - 1.11.x
+            - 1.12.x
+            - tip
+        before_script:
+          - cd grpc-go/
+        script:
+          - make gen
+          - cd c && go build client.go
+          - cd s && go build server.go
+      - language: rust
+        # cache: cargo
+        rust:
+          - stable
+        before_script:
+          - cd grpc-rust-grpc
+        script:
+          - rustup component add rustfmt
+          - make install-deps
+          - make gen
+          - cargo build --bin server
+      - language: rust
+        # cache: cargo
+        rust:
+          - stable
+        before_script:
+          - cd grpc-rust-tonic
+        script:
+          - rustup component add rustfmt
+          - make gen
+          - cargo build --bin server
+          - cargo build --bin client
+          - cargo build --bin oneshot
