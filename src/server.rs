@@ -1,7 +1,12 @@
 use tonic::{transport::Server, Request, Response, Status};
 
+use hello_world::greeter_client::GreeterClient;
 use hello_world::greeter_server::{Greeter, GreeterServer};
 use hello_world::{HelloReply, HelloRequest};
+
+use tokio::time::delay_for;
+
+use std::time::{Duration};
 
 pub mod hello_world {
     // If using build.rs:
@@ -32,15 +37,44 @@ impl Greeter for MyGreeter {
     }
 }
 
+async fn cli() -> Result<(), Box<dyn std::error::Error>> {
+    println!("client connecting");
+    let mut client = GreeterClient::connect("http://[::1]:3334").await?;
+
+    let request = tonic::Request::new(HelloRequest {
+        name: "Tonic".into(),
+    });
+
+    let response = client.say_hello(request).await?;
+
+    println!("RESPONSE={:?}", response);
+
+    Ok(())
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let addr = "[::1]:3334".parse()?;
     let greeter = MyGreeter::default();
 
-    Server::builder()
-        .add_service(GreeterServer::new(greeter))
-        .serve(addr)
-        .await?;
+    let (tx, rx) = tokio::sync::oneshot::channel::<()>();
+    tokio::spawn(async move {
+        println!("spawned");
+        Server::builder()
+            .add_service(GreeterServer::new(greeter))
+            // .serve(addr)
+            .serve_with_shutdown(addr, async {
+                rx.await.ok();
+            })
+            .await.unwrap();
+    });
 
+    println!("serving");
+
+    delay_for(Duration::from_millis(1_000)).await;
+    cli().await?;
+
+    let _ = tx.send(());
+    println!("sent killing");
     Ok(())
 }
